@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{04AD3C95-F58E-4394-B82D-1B7C27D1ECDA}</ProjectGuid>
+    <TemplateGuid>{1bc93793-694f-48fe-9372-81e2b05556fd}</TemplateGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration>Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">x64</Platform>
+    <RootNamespace>crybullet_p2c_hypervisor</RootNamespace>
+    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+    <DriverType>KMDF</DriverType>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+    <DriverType>KMDF</DriverType>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
+    <Driver_SpectreMitigation>Spectre</Driver_SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+    <DriverType>KMDF</DriverType>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+    <DriverType>KMDF</DriverType>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+    <EnableInf2cat>false</EnableInf2cat>
+    <TimeStampServer />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DriverSign>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
+    </DriverSign>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DriverSign>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
+    </DriverSign>
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)libraries\Zydis\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <PreprocessorDefinitions>ZYCORE_STATIC_BUILD;ZYDIS_STATIC_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <DisableSpecificWarnings>4083;4005;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(ProjectDir)libraries\Zydis\lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Zycore.lib;Zydis.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>driver_entry</EntryPointSymbol>
+      <TreatLinkerWarningAsErrors>false</TreatLinkerWarningAsErrors>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DriverSign>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
+    </DriverSign>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <DriverSign>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
+    </DriverSign>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <FilesToPackage Include="$(TargetPath)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="svm\handlers_ctx\cpuid\cpuid_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\cr\cr_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\debug\debug_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\default\default_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\handlers.cpp" />
+    <ClCompile Include="svm\handlers_ctx\msr\msr_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\npf\npf_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\rdtsc\rdtsc_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\ud\ud_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\vmmcall\vmmcall_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\xsetbv\xsetbv_svm.cpp" />
+    <ClCompile Include="svm\svm.cpp" />
+    <ClCompile Include="svm\utilities_ctx\critical_protector\critical_protector.cpp" />
+    <ClCompile Include="svm\utilities_ctx\debug\debug.cpp" />
+    <ClCompile Include="svm\utilities_ctx\disassembler\disassembler.cpp" />
+    <ClCompile Include="svm\utilities_ctx\hook\hook.cpp" />
+    <ClCompile Include="svm\utilities_ctx\logger\logger.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\hide_page\hide_page.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\memory.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\memory_access\memory_access.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\page_table\page_table.cpp" />
+    <ClCompile Include="svm\utilities_ctx\msr\msr.cpp" />
+    <ClCompile Include="svm\utilities_ctx\npt\npt.cpp" />
+    <ClCompile Include="svm\utilities_ctx\tpm\tpm.cpp" />
+    <ClCompile Include="svm\utilities_ctx\utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes.h" />
+    <ClInclude Include="svm\defines_ctx\amd.hpp" />
+    <ClInclude Include="svm\defines_ctx\cpu.hpp" />
+    <ClInclude Include="svm\defines_ctx\descriptors-info.hpp" />
+    <ClInclude Include="svm\defines_ctx\ia32.hpp" />
+    <ClInclude Include="svm\defines_ctx\memory-data.hpp" />
+    <ClInclude Include="svm\defines_ctx\msr-data.hpp" />
+    <ClInclude Include="svm\defines_ctx\spin-lock.hpp" />
+    <ClInclude Include="svm\handlers_ctx\cr\cr_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\debug\debug_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\xsetbv\xsetbv_svm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\critical_protector\critical_protector.hpp" />
+    <ClInclude Include="svm\utilities_ctx\hook\hook.hpp" />
+    <ClInclude Include="svm\utilities_ctx\logger\logger.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\hide_page\hide_page.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\memory_access\memory_access.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\page_table\page_table.hpp" />
+    <ClInclude Include="svm\utilities_ctx\msr\msr.hpp" />
+    <ClInclude Include="svm\defines_ctx\npt-data.hpp" />
+    <ClInclude Include="svm\defines_ctx\virtual-memory.hpp" />
+    <ClInclude Include="svm\defines_ctx\vmcb.hpp" />
+    <ClInclude Include="svm\defines_ctx\vmexit.hpp" />
+    <ClInclude Include="svm\defines_ctx\vprocessor-data.hpp" />
+    <ClInclude Include="svm\handlers_ctx\cpuid\cpuid_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\default\default_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\handlers.hpp" />
+    <ClInclude Include="svm\handlers_ctx\msr\msr_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\npf\npf_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\rdtsc\rdtsc_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\ud\ud_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\vmmcall\vmmcall_svm.hpp" />
+    <ClInclude Include="svm\svm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\debug\debug.hpp" />
+    <ClInclude Include="svm\utilities_ctx\disassembler\disassembler.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\memory.hpp" />
+    <ClInclude Include="svm\utilities_ctx\npt\npt.hpp" />
+    <ClInclude Include="svm\defines_ctx\bitset.hpp" />
+    <ClInclude Include="svm\utilities_ctx\tpm\tpm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\utilities.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="svm\asm\svm_segment.asm" />
+    <MASM Include="svm\asm\svm_vmmcall.asm" />
+    <MASM Include="svm\asm\svm_x64.asm">
+      <FileType>Document</FileType>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+    <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+  </Target>
+</Project>

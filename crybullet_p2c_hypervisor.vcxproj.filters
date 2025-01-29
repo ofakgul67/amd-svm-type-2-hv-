@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Driver Files">
+      <UniqueIdentifier>{8E41214B-6785-4CFE-B992-037D68949A14}</UniqueIdentifier>
+      <Extensions>inf;inv;inx;mof;mc;</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="svm\utilities_ctx\utilities.cpp" />
+    <ClCompile Include="svm\svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\cpuid\cpuid_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\npf\npf_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\rdtsc\rdtsc_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\vmmcall\vmmcall_svm.cpp" />
+    <ClCompile Include="svm\utilities_ctx\debug\debug.cpp" />
+    <ClCompile Include="svm\utilities_ctx\npt\npt.cpp" />
+    <ClCompile Include="svm\utilities_ctx\disassembler\disassembler.cpp" />
+    <ClCompile Include="svm\handlers_ctx\msr\msr_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\handlers.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\memory.cpp" />
+    <ClCompile Include="svm\handlers_ctx\ud\ud_svm.cpp" />
+    <ClCompile Include="svm\handlers_ctx\default\default_svm.cpp" />
+    <ClCompile Include="svm\utilities_ctx\msr\msr.cpp" />
+    <ClCompile Include="svm\utilities_ctx\hook\hook.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\page_table\page_table.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\memory_access\memory_access.cpp" />
+    <ClCompile Include="svm\handlers_ctx\debug\debug_svm.cpp" />
+    <ClCompile Include="svm\utilities_ctx\tpm\tpm.cpp" />
+    <ClCompile Include="svm\utilities_ctx\memory\hide_page\hide_page.cpp" />
+    <ClCompile Include="svm\utilities_ctx\logger\logger.cpp" />
+    <ClCompile Include="svm\handlers_ctx\cr\cr_svm.cpp" />
+    <ClCompile Include="svm\utilities_ctx\critical_protector\critical_protector.cpp" />
+    <ClCompile Include="svm\handlers_ctx\xsetbv\xsetbv_svm.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="svm\defines_ctx\cpu.hpp" />
+    <ClInclude Include="svm\defines_ctx\descriptors-info.hpp" />
+    <ClInclude Include="svm\defines_ctx\ia32.hpp" />
+    <ClInclude Include="svm\defines_ctx\virtual-memory.hpp" />
+    <ClInclude Include="svm\defines_ctx\vmcb.hpp" />
+    <ClInclude Include="svm\defines_ctx\vmexit.hpp" />
+    <ClInclude Include="svm\defines_ctx\vprocessor-data.hpp" />
+    <ClInclude Include="svm\svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\cpuid\cpuid_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\npf\npf_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\rdtsc\rdtsc_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\vmmcall\vmmcall_svm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\utilities.hpp" />
+    <ClInclude Include="svm\handlers_ctx\handlers.hpp" />
+    <ClInclude Include="svm\utilities_ctx\debug\debug.hpp" />
+    <ClInclude Include="svm\defines_ctx\bitset.hpp" />
+    <ClInclude Include="svm\utilities_ctx\npt\npt.hpp" />
+    <ClInclude Include="svm\defines_ctx\amd.hpp" />
+    <ClInclude Include="svm\utilities_ctx\disassembler\disassembler.hpp" />
+    <ClInclude Include="svm\handlers_ctx\msr\msr_svm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\memory.hpp" />
+    <ClInclude Include="svm\handlers_ctx\ud\ud_svm.hpp" />
+    <ClInclude Include="svm\handlers_ctx\default\default_svm.hpp" />
+    <ClInclude Include="includes.h" />
+    <ClInclude Include="svm\defines_ctx\npt-data.hpp" />
+    <ClInclude Include="svm\defines_ctx\memory-data.hpp" />
+    <ClInclude Include="svm\utilities_ctx\msr\msr.hpp" />
+    <ClInclude Include="svm\defines_ctx\msr-data.hpp" />
+    <ClInclude Include="svm\utilities_ctx\hook\hook.hpp" />
+    <ClInclude Include="svm\defines_ctx\spin-lock.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\page_table\page_table.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\memory_access\memory_access.hpp" />
+    <ClInclude Include="svm\handlers_ctx\debug\debug_svm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\tpm\tpm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\memory\hide_page\hide_page.hpp" />
+    <ClInclude Include="svm\utilities_ctx\logger\logger.hpp" />
+    <ClInclude Include="svm\handlers_ctx\cr\cr_svm.hpp" />
+    <ClInclude Include="svm\utilities_ctx\critical_protector\critical_protector.hpp" />
+    <ClInclude Include="svm\handlers_ctx\xsetbv\xsetbv_svm.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="svm\asm\svm_x64.asm" />
+    <MASM Include="svm\asm\svm_segment.asm" />
+    <MASM Include="svm\asm\svm_vmmcall.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>
