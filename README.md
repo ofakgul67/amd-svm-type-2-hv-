@@ -1,20 +1,5 @@
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-sans); color: var(--color-text-primary); }
-.wrap { max-width: 720px; padding: 2rem 0 3rem; }
-h1 { font-size: 22px; font-weight: 500; margin-bottom: 6px; }
-h2 { font-size: 16px; font-weight: 500; margin: 2rem 0 0.6rem; }
-p { font-size: 15px; line-height: 1.7; color: var(--color-text-secondary); }
-.sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-.note { font-size: 13px; color: var(--color-text-secondary); padding: 10px 14px; border-left: 2px solid var(--color-border-secondary); margin: 1.2rem 0; }
-ul { list-style: none; padding: 0; margin: 0.4rem 0; }
-ul li { font-size: 14px; color: var(--color-text-secondary); padding: 4px 0; padding-left: 14px; position: relative; line-height: 1.6; }
-ul li::before { content: "–"; position: absolute; left: 0; color: var(--color-text-tertiary); }
-pre { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; font-family: var(--font-mono); font-size: 13px; line-height: 1.8; color: var(--color-text-primary); overflow-x: auto; margin: 0.5rem 0 1rem; border: 0.5px solid var(--color-border-tertiary); }
-.platform { font-size: 12px; color: var(--color-text-tertiary); margin-bottom: 4px; font-family: var(--font-mono); }
-hr { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 2rem 0; }
-</style>
 
 <div class="wrap">
   <h1>amd-svm-type-2-hv</h1>
