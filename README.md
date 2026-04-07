@@ -1,4 +1,3 @@
-
 <div class="wrap">
   <h1>amd-svm-type-2-hv</h1>
   <p class="sub">A research hypervisor for AMD processors using SVM.</p>
